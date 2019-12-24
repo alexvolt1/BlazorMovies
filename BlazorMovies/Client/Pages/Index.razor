@@ -1,23 +1,15 @@
 ﻿@page "/"
 
-<p>Hello, @StringUtilities.CustomToUpper(name)</p>
-<p>Let's add 2 + 2 = @(2 + 2)</p>
+<div>
+    <h3>Movies</h3>
+    <MoviesLists />
 
-<button @onclick="@WriteInLog">Click me</button>
+</div>
+
+
+
+
 
 @code{
-    string name = "Gala";
 
-    public class StringUtilities
-    {
-       public static string CustomToUpper(string value) => value.ToUpper();
-    }
-
-
-
-    void WriteInLog()
-    {
-        Console.WriteLine("I've been clicked! (from method)");
-
-    }
 }

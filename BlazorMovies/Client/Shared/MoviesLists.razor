@@ -1,0 +1,45 @@
+﻿
+@if (movies == null)
+{
+    <text>Loading...</text>
+}
+else if (movies.Count == 0)
+{
+    <text>There are no records to show</text>
+}
+else
+{
+    @foreach (var movie in movies)
+    {
+        <div>
+            <p>Title:@movie.Title</p>
+            <p>Release Date:<b>@movie.ReleaseDate.ToString("dd MM yyyy")</b></p>
+        </div>
+    }
+}
+
+@code {
+    string name = "Gala";
+
+
+    List<Movie> movies;
+
+    protected override void OnInitialized()
+    {
+        //await Task.Delay(3000);
+        movies = new List<Movie>()
+{
+        new Movie(){Title = "Batman: Returns",ReleaseDate = new DateTime(2019, 7,2)},
+        new Movie(){Title = "Spider-Man: Far From Home",ReleaseDate = new DateTime(2016, 7,2)},
+        new Movie(){Title = "one flew over the cuckoo's nest",ReleaseDate = new DateTime(1980, 5, 5)}
+    };
+
+
+    }
+
+    void WriteInLog()
+    {
+        Console.WriteLine("I've been clicked! (from method)");
+
+    }
+}
