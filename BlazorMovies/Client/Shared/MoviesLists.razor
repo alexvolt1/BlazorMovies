@@ -6,29 +6,55 @@
     @*<img src="/images/giphy.gif" />*@
     @*<img src="/images/giphycat.gif" />*@
     @*<img src="/images/giphycat2.gif" />*@
-    <img src="/images/giphygirl.gif" />
+    @*<img src="/images/giphygirl.gif" />*@
+
+    @if (NullTemplate != null)
+    {
+        @NullTemplate
+    }
+    else
+    {
+        <img src="/images/giphyoriginal.gif" />
+    }
 
 }
 else if (Movies.Count == 0)
 {
-    <text>There are no records to show</text>
+
+    @if (EmptyTemplate != null)
+    {
+        @EmptyTemplate
+    }
+    else
+    {
+        <text>There are no records to show</text>
+    }
+
 }
 else
 {
+    <div>
+        @*<input type="checkbox" @onchange="(()=>displayButtons=!displayButtons)" />*@
+        <input type="checkbox" @bind="displayButtons" />
+    </div>
     @foreach (var movie in Movies)
     {
-        <div>
-            <p>Title:@movie.Title</p>
-            <p>Release Date:<b>@movie.ReleaseDate.ToString("dd MM yyyy")</b></p>
-        </div>
+        <IndividualMovie Movie="movie" DisplayButtons="displayButtons" DeleteMovie="DeleteMovie" />
     }
 }
 
 @code {
-    string name = "Galala";
 
-    [Parameter]
-    public List<Movie> Movies { get; set; }
+    [Parameter] public List<Movie> Movies { get; set; }
+    [Parameter] public RenderFragment NullTemplate { get; set; }
+    [Parameter] public RenderFragment EmptyTemplate { get; set; }
+
+    bool displayButtons = true;
+
+    private void DeleteMovie(Movie movie)
+    {
+        Movies.Remove(movie);
+    }
 
     void WriteInLog()
     {

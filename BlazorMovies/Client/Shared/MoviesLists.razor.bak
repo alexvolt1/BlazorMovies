@@ -1,0 +1,38 @@
+﻿
+@if (Movies == null)
+{
+
+    @*<img src="/images/giphyoriginal.gif" />*@
+    @*<img src="/images/giphy.gif" />*@
+    @*<img src="/images/giphycat.gif" />*@
+    @*<img src="/images/giphycat2.gif" />*@
+    <img src="/images/giphygirl.gif" />
+
+}
+else if (Movies.Count == 0)
+{
+    <text>There are no records to show</text>
+}
+else
+{
+    @foreach (var movie in Movies)
+    {
+        <div>
+            <p>Title:@movie.Title</p>
+            <p>Release Date:<b>@movie.ReleaseDate.ToString("dd MM yyyy")</b></p>
+        </div>
+    }
+}
+
+@code {
+    string name = "Galala";
+
+    [Parameter]
+    public List<Movie> Movies { get; set; }
+
+    void WriteInLog()
+    {
+        Console.WriteLine("I've been clicked! (from method)");
+
+    }
+}
