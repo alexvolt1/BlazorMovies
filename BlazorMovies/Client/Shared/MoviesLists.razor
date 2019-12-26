@@ -1,15 +1,21 @@
 ﻿
-@if (movies == null)
+@if (Movies == null)
 {
-    <text>Loading...</text>
+
+    @*<img src="/images/giphyoriginal.gif" />*@
+    @*<img src="/images/giphy.gif" />*@
+    @*<img src="/images/giphycat.gif" />*@
+    @*<img src="/images/giphycat2.gif" />*@
+    <img src="/images/giphygirl.gif" />
+
 }
-else if (movies.Count == 0)
+else if (Movies.Count == 0)
 {
     <text>There are no records to show</text>
 }
 else
 {
-    @foreach (var movie in movies)
+    @foreach (var movie in Movies)
     {
         <div>
             <p>Title:@movie.Title</p>
@@ -21,21 +27,8 @@ else
 @code {
     string name = "Galala";
 
-
-    List<Movie> movies;
-
-    protected override void OnInitialized()
-    {
-        //await Task.Delay(3000);
-        movies = new List<Movie>()
-{
-        new Movie(){Title = "Batman: Returns",ReleaseDate = new DateTime(2019, 7,2)},
-        new Movie(){Title = "Spider-Man: Far From Home",ReleaseDate = new DateTime(2016, 7,2)},
-        new Movie(){Title = "one flew over the cuckoo's nest",ReleaseDate = new DateTime(1980, 5, 5)}
-    };
-
-
-    }
+    [Parameter]
+    public List<Movie> Movies { get; set; }
 
     void WriteInLog()
     {
